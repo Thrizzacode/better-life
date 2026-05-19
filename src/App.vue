@@ -103,6 +103,7 @@
 <script setup>
 import { ref } from "vue";
 import { inject } from "@vercel/analytics";
+import { injectSpeedInsights } from "@vercel/speed-insights";
 import { usePoints } from "./composables/usePoints.js";
 import OnboardingScreen from "./components/OnboardingScreen.vue";
 import ProgressBar from "./components/ProgressBar.vue";
@@ -111,6 +112,7 @@ import HistoryList from "./components/HistoryList.vue";
 import SettingsPanel from "./components/SettingsPanel.vue";
 
 inject();
+injectSpeedInsights();
 
 const { hasOnboarded, hasReachedTarget } = usePoints();
 const activeTab = ref("dashboard");
