@@ -1,35 +1,55 @@
 <template>
+  <Analytics />
   <!-- Onboarding -->
   <OnboardingScreen v-if="!hasOnboarded" />
 
   <!-- Main -->
-  <div v-else class="min-h-screen bg-[#f7f4eb] text-black pb-12 font-sans relative">
+  <div
+    v-else
+    class="min-h-screen bg-[#f7f4eb] text-black pb-12 font-sans relative"
+  >
     <!-- Ambient background ticket grid pattern -->
-    <div class="absolute inset-0 bg-[radial-gradient(#1a1a1a_1px,transparent_1px)] [background-size:24px_24px] opacity-[0.07] pointer-events-none"></div>
+    <div
+      class="absolute inset-0 bg-[radial-gradient(#1a1a1a_1px,transparent_1px)] [background-size:24px_24px] opacity-[0.07] pointer-events-none"
+    ></div>
 
     <!-- Header -->
     <header class="sticky top-0 z-40 border-b-4 border-black bg-white">
       <div class="mx-auto flex max-w-lg items-center justify-between px-4 py-4">
         <div class="flex items-center gap-3">
-          <div class="flex size-10 items-center justify-center border-2 border-black bg-[#ffde4d] text-xl shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+          <div
+            class="flex size-10 items-center justify-center border-2 border-black bg-[#ffde4d] text-xl shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]"
+          >
             😤
           </div>
           <div>
-            <h1 class="text-lg font-black leading-none uppercase tracking-tight text-black">離職集點卡</h1>
-            <p class="mt-0.5 text-[0.65rem] font-bold uppercase tracking-widest text-neutral-400 font-mono">Resignation Card</p>
+            <h1
+              class="text-lg font-black leading-none uppercase tracking-tight text-black"
+            >
+              離職集點卡
+            </h1>
+            <p
+              class="mt-0.5 text-[0.65rem] font-bold uppercase tracking-widest text-neutral-400 font-mono"
+            >
+              Resignation Card
+            </p>
           </div>
         </div>
 
         <!-- Tab nav -->
-        <nav class="flex gap-1 border-2 border-black bg-[#f7f4eb] p-1 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+        <nav
+          class="flex gap-1 border-2 border-black bg-[#f7f4eb] p-1 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]"
+        >
           <button
             v-for="tab in tabs"
             :key="tab.id"
             :id="`tab-${tab.id}`"
             class="px-3 py-1.5 text-xs font-black uppercase transition-all"
-            :class="activeTab === tab.id
-              ? 'border-2 border-black bg-[#ffde4d] text-black shadow-[1px_1px_0px_0px_rgba(0,0,0,1)]'
-              : 'text-neutral-500 hover:text-black border-2 border-transparent'"
+            :class="
+              activeTab === tab.id
+                ? 'border-2 border-black bg-[#ffde4d] text-black shadow-[1px_1px_0px_0px_rgba(0,0,0,1)]'
+                : 'text-neutral-500 hover:text-black border-2 border-transparent'
+            "
             @click="activeTab = tab.id"
           >
             {{ tab.label }}
@@ -82,20 +102,21 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import { usePoints } from './composables/usePoints.js'
-import OnboardingScreen from './components/OnboardingScreen.vue'
-import ProgressBar      from './components/ProgressBar.vue'
-import AddPointsPanel   from './components/AddPointsPanel.vue'
-import HistoryList      from './components/HistoryList.vue'
-import SettingsPanel    from './components/SettingsPanel.vue'
+import { ref } from "vue";
+import { Analytics } from "@vercel/analytics/vue";
+import { usePoints } from "./composables/usePoints.js";
+import OnboardingScreen from "./components/OnboardingScreen.vue";
+import ProgressBar from "./components/ProgressBar.vue";
+import AddPointsPanel from "./components/AddPointsPanel.vue";
+import HistoryList from "./components/HistoryList.vue";
+import SettingsPanel from "./components/SettingsPanel.vue";
 
-const { hasOnboarded, hasReachedTarget } = usePoints()
-const activeTab = ref('dashboard')
+const { hasOnboarded, hasReachedTarget } = usePoints();
+const activeTab = ref("dashboard");
 
 const tabs = [
-  { id: 'dashboard', label: '集點' },
-  { id: 'history',   label: '紀錄' },
-  { id: 'settings',  label: '設定' },
-]
+  { id: "dashboard", label: "集點" },
+  { id: "history", label: "紀錄" },
+  { id: "settings", label: "設定" },
+];
 </script>
