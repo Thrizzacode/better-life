@@ -1,0 +1,67 @@
+@import "tailwindcss";
+
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=JetBrains+Mono:wght@400;500;700;800&display=swap');
+
+/* ─── Base reset ───────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  background-color: #f7f4eb; /* Warm cream background */
+  color: #1a1a1a;
+  font-family: 'Bricolage Grotesque', ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+#app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ─── Scrollbar ────────────────────────────────────────── */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #f1ebd9; }
+::-webkit-scrollbar-thumb {
+  background: #1a1a1a;
+  border: 2px solid #f1ebd9;
+  border-radius: 4px;
+}
+
+/* ─── Global Font overrides ──────────────────────────────── */
+.font-mono {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* ─── Simple animations for neo-brutalist feel ───────────── */
+@keyframes brutalWiggle {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-1deg); }
+  75% { transform: rotate(1deg); }
+}
+
+@keyframes brutalBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+.animate-wiggle {
+  animation: brutalWiggle 0.3s ease-in-out infinite;
+}
+
+.animate-brutal-bounce {
+  animation: brutalBounce 2s ease-in-out infinite;
+}
+
+/* ─── Hide number input spinners ───────────────────────── */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
