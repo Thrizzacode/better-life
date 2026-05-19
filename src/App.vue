@@ -1,5 +1,4 @@
 <template>
-  <Analytics />
   <!-- Onboarding -->
   <OnboardingScreen v-if="!hasOnboarded" />
 
@@ -103,13 +102,15 @@
 
 <script setup>
 import { ref } from "vue";
-import { Analytics } from "@vercel/analytics/vue";
+import { inject } from "@vercel/analytics";
 import { usePoints } from "./composables/usePoints.js";
 import OnboardingScreen from "./components/OnboardingScreen.vue";
 import ProgressBar from "./components/ProgressBar.vue";
 import AddPointsPanel from "./components/AddPointsPanel.vue";
 import HistoryList from "./components/HistoryList.vue";
 import SettingsPanel from "./components/SettingsPanel.vue";
+
+inject();
 
 const { hasOnboarded, hasReachedTarget } = usePoints();
 const activeTab = ref("dashboard");
